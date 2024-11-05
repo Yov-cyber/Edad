@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Edad</title>
+    <style>
+        body {
+            background-color: #1a1a1d;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .container h1 {
+            color: #00ffcc;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+            background-color: #222;
+            color: #00ffcc;
+        }
+        input[type="button"] {
+            background-color: #00ffcc;
+            color: #333;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #00e6b8;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #1a1a1d;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Edad</h1>
+        
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Ingrese su nombre">
+        
+        <label for="sexo">Sexo (M/F):</label>
+        <select id="sexo">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+        
+        <label for="anioNacimiento">Año de Nacimiento:</label>
+        <input type="number" id="anioNacimiento" placeholder="Ej. 2000">
+        
+        <label for="anioActual">Año Actual:</label>
+        <input type="number" id="anioActual" placeholder="Ej. 2024">
+        
+        <input type="button" value="Calcular Edad" onclick="calcularEdad()">
+        
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularEdad() {
+            const nombre = document.getElementById('nombre').value;
+            const sexo = document.getElementById('sexo').value;
+            const anioNacimiento = parseInt(document.getElementById('anioNacimiento').value);
+            const anioActual = parseInt(document.getElementById('anioActual').value);
+
+            if (isNaN(anioNacimiento) || isNaN(anioActual)) {
+                document.getElementById('resultado').innerHTML = "<p style='color: #ff3333;'>Por favor, ingrese años válidos.</p>";
+                return;
+            }
+
+            const edad = anioActual - anioNacimiento;
+            const dias = edad * 365;
+            const ahorro = dias * 10;
+
+            document.getElementById('resultado').innerHTML = `
+                <p>----------------------------------------</p>
+                <p>Hola ${nombre}, Sexo: ${sexo}</p>
+                <p>----------------------------------------</p>
+                <p>Tu edad es: ${edad} años y tienes de vida: ${dias} días</p>
+                <p>------------------------------------------------------------</p>
+                <p>${nombre}, si ahorras 10 pesos diarios, tendrías ${ahorro} pesos ahorrados</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
